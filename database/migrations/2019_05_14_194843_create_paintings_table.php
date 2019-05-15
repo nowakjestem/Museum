@@ -16,12 +16,9 @@ class CreatePaintingsTable extends Migration
         Schema::create('paintings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->unsignedBigInteger('author_id');
-            $table->unsignedBigInteger('course_id');
+            $table->bigInteger('author_id');
+            $table->bigInteger('course_id');
             $table->timestamps();
-
-            $table->foreign('author_id')->references('id')->on('authors');
-            $table->foreign('course_id')->references('id')->on('courses');
         });
     }
 

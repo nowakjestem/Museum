@@ -12,8 +12,21 @@ class Ticket extends Model
         'quantity',
     ];
 
+    protected $attach = [
+        'ticketType',
+    ];
+
     public function course(): BelongsTo
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function getTicketTypeAttribute(): string
+    {
+        if ($this->quantity > 1) {
+            return 'multiple';
+        } else {
+            return 'single';
+        }
     }
 }
